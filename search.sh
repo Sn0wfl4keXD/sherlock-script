@@ -7,7 +7,7 @@ LOOP=true
 NAME=$@
 
 
-#downloads sherlock when ist not installed
+#downloads sherlock when its not installed
 function getSherlock(){
 	if [ ! -d $DIR ]
 	then
@@ -19,24 +19,25 @@ function getSherlock(){
 	echo 'Done'
 	else
 	cd $DIR
+	git pull
 	fi
 }
 
 
 #main function
 function inputCore(){
-	echo 'Enter commands or q to exti: '
+	echo 'Enter commands or q to exit: '
 	read NAME
 	if [ $NAME = 'q' ]
 	then
 	read -p "Are you sure? [Y/y or N/n]" -n 1 -r
         if [[ $REPLY =~ ^[Yy]$ ]]
         then
-        echo ''
-        echo 'Quitting'
-        LOOP=false
+            echo ''
+            echo 'Quitting'
+            LOOP=false
         else
-        python3 sherlock.py $NAME
+            python3 sherlock.py $NAME
         fi
 	else
 	python3 sherlock.py $NAME
@@ -45,14 +46,12 @@ function inputCore(){
 
 #runs on first execution 
 function executeArgsFirst(){
-    if [[ $NAME = '' ]]
-    then
-    python3 sherlock.py --help
+	if [[ $NAME = '' ]]
+	then
+	python3 sherlock.py --help
     else
     python3 sherlock.py $NAME
-    fi
-    inputCore
-	
+	fi
 }
 
 
