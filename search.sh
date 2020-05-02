@@ -32,11 +32,11 @@ function inputCore(){
 	read -p "Are you sure? [Y/y or N/n]" -n 1 -r
         if [[ $REPLY =~ ^[Yy]$ ]]
         then
-            echo ''
-            echo 'Quitting'
-            LOOP=false
+        echo ''
+        echo 'Quitting'
+        LOOP=false
         else
-            python3 sherlock.py $NAME
+        python3 sherlock.py $NAME
         fi
 	else
 	python3 sherlock.py $NAME
@@ -45,13 +45,13 @@ function inputCore(){
 
 #runs on first execution 
 function executeArgsFirst(){
-	if [[ $NAME = '' ]]
-	then
-	python3 sherlock.py --help
+    if [[ $NAME = '' ]]
+    then
+    python3 sherlock.py --help
     else
     python3 sherlock.py $NAME
-	fi
-	inputCore
+    fi
+    inputCore
 	
 }
 
